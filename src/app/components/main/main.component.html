@@ -10,14 +10,20 @@
 
 
 <form [formGroup]="mainForm" (ngSubmit)="formGroupSub()">
+  <div *ngIf="!!mainForm.controls.name.errors?.minlength?.requiredLength">
+    MinNameLength- {{mainForm.controls.name.errors?.minlength?.requiredLength}}
+  </div>
   <div>
     <label> Name:
-      <input  [formControl]="name">
+      <input [formControl]="name" type="text">
     </label>
   </div>
   <div>
+    <div *ngIf="!!mainForm.controls.age.errors?.min?.min">
+      Min Age- {{mainForm.controls.age.errors?.min?.min}}
+    </div>
     <label> Age:
-      <input [formControl]="age">
+      <input [formControl]="age" type="number">
     </label>
   </div>
   <button>Add</button>

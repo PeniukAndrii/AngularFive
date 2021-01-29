@@ -4,12 +4,18 @@
   <div *ngIf="user.status">
     <form [formGroup]="secondForm" (ngSubmit)="setNewUser()">
       <label> NewName:
-        <input [formControl]="NewName">
+        <input [formControl]="NewName" type="text">
       </label>
       <label> NewAge:
-        <input [formControl]="NewAge">
+        <input [formControl]="NewAge" type="number">
       </label>
-      <button>Save Change</button>
+      <button (click)="ChangeInputValue()">Save Change</button>
+      <div *ngIf="!validAge">
+        <div *ngIf="!!secondForm.controls.age.errors?.min?.min">Min age-{{secondForm.controls.age.errors?.min?.min}}</div>
+      </div>
+      <div *ngIf="!validName">
+        <div *ngIf="!!secondForm.controls.name.errors?.minlength?.requiredLength">Min NameLength-{{secondForm.controls.name.errors?.minlength?.requiredLength}}</div>
+      </div>
     </form>
   </div>
 </div>

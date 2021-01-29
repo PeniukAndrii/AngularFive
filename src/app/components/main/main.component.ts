@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {user} from '../../db/db';
 import {IUser} from '../../interface/i-user';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -14,8 +14,8 @@ export class MainComponent implements OnInit {
   age = '';*/
   users: IUser[] = user;
 
-  name = new FormControl();
-  age = new FormControl();
+  name = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  age = new FormControl('', [Validators.required, Validators.min(18)]);
   mainForm = new FormGroup({
     name: this.name,
     age: this.age
@@ -33,6 +33,11 @@ export class MainComponent implements OnInit {
   }*/
 
   formGroupSub(): void {
-    user.push({name: this.mainForm.value.name, age: this.mainForm.value.age, status: false});
+    if (this.mainForm.valid){
+      user.push({name: this.mainForm.value.name, age: this.mainForm.value.age, status: false});
+      this.name.patchValue('');
+      this.age.patchValue('');
+    }
+    return;
   }
 }
