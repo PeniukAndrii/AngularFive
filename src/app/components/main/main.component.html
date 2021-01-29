@@ -11,10 +11,14 @@
 
 <form [formGroup]="mainForm" (ngSubmit)="formGroupSub()">
   <div>
-    <input [formControl]="name">
+    <label> Name:
+      <input  [formControl]="name">
+    </label>
   </div>
   <div>
-    <input [formControl]="age">
+    <label> Age:
+      <input [formControl]="age">
+    </label>
   </div>
   <button>Add</button>
 </form>

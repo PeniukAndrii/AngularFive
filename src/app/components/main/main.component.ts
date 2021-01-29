@@ -33,6 +33,6 @@ export class MainComponent implements OnInit {
   }*/
 
   formGroupSub(): void {
-    user.push({name: this.mainForm.value.name, age: this.mainForm.value.age});
+    user.push({name: this.mainForm.value.name, age: this.mainForm.value.age, status: false});
   }
 }
